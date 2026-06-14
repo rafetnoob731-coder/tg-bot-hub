@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+Disallow: /admin.html
+Disallow: /api/
+
+Sitemap: https://tgbothub.vercel.app/sitemap.xml

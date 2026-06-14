@@ -1,0 +1,12 @@
+# TG BOT HUB dependencies
+cryptography>=41.0.0
+requests>=2.31.0
+
+# Development
+# pytest>=7.0.0
+# black>=22.0.0
+# flake8>=6.0.0
+
+# Production
+# gunicorn>=20.0.0
+# psycopg2-binary>=2.9.0 (for PostgreSQL)

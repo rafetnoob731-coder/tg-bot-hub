@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TG BOT HUB - Enterprise Telegram Bot Management Platform</title>
+    <meta name="description" content="Professional platform to create, manage, and scale Telegram bots without code.">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Landing Page Specific Styles */
+        .landing-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 20% 50%, rgba(108, 92, 231, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 20%, rgba(0, 206, 201, 0.1) 0%, transparent 50%),
+                        radial-gradient(ellipse at 40% 80%, rgba(253, 121, 168, 0.08) 0%, transparent 50%);
+            animation: gradientMove 15s ease infinite;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(108, 92, 231, 0.15);
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            border-radius: 100px;
+            color: var(--primary-light);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, #A29BFE 50%, #6C5CE7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-xl);
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+        .hero-stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(108, 92, 231, 0.1);
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            border-radius: 100px;
+            color: var(--primary-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            transition: all var(--transition-base);
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-md);
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Pricing */
+        .pricing-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            padding: 2.5rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            transition: all var(--transition-base);
+            position: relative;
+        }
+        .pricing-card.featured {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(108, 92, 231, 0.15);
+            transform: scale(1.05);
+        }
+        .pricing-card.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4px 16px;
+            background: var(--primary-gradient);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .pricing-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 1rem 0;
+        }
+        .pricing-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+        .pricing-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .pricing-features li::before {
+            content: '✅ ';
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: var(--transition-base);
+        }
+        .faq-item:hover {
+            border-color: var(--border-hover);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-answer {
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            display: none;
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-answer {
+            display: block;
+        }
+
+        /* Footer */
+        .landing-footer {
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .footer-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .footer-title {
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .footer-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .features-grid, .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .features-grid, .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-card.featured {
+                transform: none;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            .features-section, .pricing-section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            padding: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+        }
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        .testimonial-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .testimonial-role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav style="position:fixed;top:0;left:0;right:0;z-index:100;padding:0.8rem 2rem;background:var(--bg-glass);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-glass);display:flex;align-items:center;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:0.8rem;">
+            <div style="width:36px;height:36px;background:var(--primary-gradient);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:white;font-weight:800;">T</div>
+            <span style="font-weight:800;font-size:1.1rem;">TG BOT HUB</span>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:center;">
+            <a href="#features" style="color:var(--text-secondary);font-size:0.9rem;">Features</a>
+            <a href="#pricing" style="color:var(--text-secondary);font-size:0.9rem;">Pricing</a>
+            <a href="/login.html" class="btn btn-ghost btn-sm">Login</a>
+            <a href="/register.html" class="btn btn-primary btn-sm">Get Started Free</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="landing-hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content animate-fade-in-up">
+            <div class="hero-badge">
+                🚀 Enterprise-Grade Telegram Bot Management
+            </div>
+            <h1 class="hero-title">
+                Manage All Your<br>Telegram Bots in One Place
+            </h1>
+            <p class="hero-subtitle">
+                Professional platform to create, manage, monitor, and scale Telegram bots 
+                without writing a single line of code. Trusted by thousands of businesses worldwide.
+            </p>
+            <div class="hero-actions">
+                <a href="/register.html" class="btn btn-primary btn-lg">
+                    🚀 Get Started Free
+                </a>
+                <a href="#features" class="btn btn-ghost btn-lg">
+                    Learn More →
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">10K+</div>
+                    <div class="hero-stat-label">Active Bots</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">50K+</div>
+                    <div class="hero-stat-label">Users</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">1M+</div>
+                    <div class="hero-stat-label">Commands Served</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">99.9%</div>
+                    <div class="hero-stat-label">Uptime</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div style="text-align:center;margin-bottom:3rem;">
+            <div class="section-label" style="margin:0 auto 1rem;">✨ Features</div>
+            <h2 class="section-title">Everything You Need to<br>Manage Telegram Bots</h2>
+            <p class="section-subtitle" style="margin:0 auto;">Enterprise-grade tools for bot management, analytics, and scaling.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3 class="feature-title">Multi-Bot Management</h3>
+                <p class="feature-desc">Add unlimited Telegram bots, manage them from one dashboard. Start, stop, monitor, and configure all your bots in real-time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Advanced Command System</h3>
+                <p class="feature-desc">Create powerful commands with text, media, inline keyboards, reply keyboards, dynamic variables, and scheduled responses.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">Enterprise Security</h3>
+                <p class="feature-desc">JWT authentication, 2FA, rate limiting, DDoS protection, audit logs, and role-based access control.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Real-Time Analytics</h3>
+                <p class="feature-desc">Track bot performance, command usage, user engagement, growth trends, and get actionable insights with beautiful charts.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">AI Integration</h3>
+                <p class="feature-desc">Power your bots with AI. Auto-reply, content generation, moderation, and smart conversations using GPT integration.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3 class="feature-title">Auto Moderation</h3>
+                <p class="feature-desc">Built-in spam protection, anti-flood, auto-moderation, user verification, and channel subscription enforcement.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📦</div>
+                <h3 class="feature-title">Plugin System</h3>
+                <p class="feature-desc">Extend functionality with plugins. Install, enable/disable, and manage plugins from the marketplace.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛒</div>
+                <h3 class="feature-title">Bot Marketplace</h3>
+                <p class="feature-desc">Buy, sell, and trade bot templates. Premium templates, verified sellers, ratings, and secure transactions.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔌</div>
+                <h3 class="feature-title">API & Webhooks</h3>
+                <p class="feature-desc">REST API, webhook manager, API key authentication, and developer portal for custom integrations.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📢</div>
+                <h3 class="feature-title">Broadcast System</h3>
+                <p class="feature-desc">Send messages to multiple chats, schedule broadcasts, mass messaging, and auto-posting to channels.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3 class="feature-title">User Management</h3>
+                <p class="feature-desc">Complete user system with registration, secure login, role-based permissions, and activity tracking.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔮</div>
+                <h3 class="feature-title">Future Ready</h3>
+                <p class="feature-desc">Modular architecture supporting Discord, WhatsApp, AI Agents, VPS Manager, and more coming soon.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div style="text-align:center;margin-bottom:3rem;">
+            <div class="section-label" style="margin:0 auto 1rem;">💬 Testimonials</div>
+            <h2 class="section-title">Trusted by Bot Developers<br>Worldwide</h2>
+        </div>
+        <div class="grid grid-3">
+            <div class="testimonial-card">
+                <div class="testimonial-text">"TG BOT HUB revolutionized how we manage our Telegram bots. We went from 5 to 50 bots without any additional overhead. The analytics dashboard is incredible."</div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">S</div>
+                    <div>
+                        <div class="testimonial-name">Sarah Chen</div>
+                        <div class="testimonial-role">CTO, TechFlow Inc.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"The command system is powerful yet intuitive. We migrated our entire bot infrastructure in one day. The AI features saved us months of development time."</div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">M</div>
+                    <div>
+                        <div class="testimonial-name">Marcus Williams</div>
+                        <div class="testimonial-role">Lead Developer, BotStudio</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">"Finally a professional platform for Telegram bot management. The security features, audit logs, and 2FA give us the enterprise compliance we needed."</div>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">A</div>
+                    <div>
+                        <div class="testimonial-name">Alex Rodriguez</div>
+                        <div class="testimonial-role">CEO, CloudComm</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div style="text-align:center;margin-bottom:3rem;">
+            <div class="section-label" style="margin:0 auto 1rem;">💰 Pricing</div>
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle" style="margin:0 auto;">Start free, upgrade as you grow. No hidden fees.</p>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-name">Free</div>
+                <div class="pricing-price">$0<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li>Up to 5 bots</li>
+                    <li>50 commands per bot</li>
+                    <li>Basic analytics</li>
+                    <li>Command system</li>
+                    <li>Community support</li>
+                </ul>
+                <a href="/register.html" class="btn btn-ghost" style="width:100%;">Get Started</a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="pricing-name">Pro</div>
+                <div class="pricing-price">$29<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li>Up to 50 bots</li>
+                    <li>Unlimited commands</li>
+                    <li>Advanced analytics</li>
+                    <li>AI integration</li>
+                    <li>Priority support</li>
+                    <li>Plugin system</li>
+                    <li>API access</li>
+                </ul>
+                <a href="/register.html" class="btn btn-primary" style="width:100%;">Start Free Trial</a>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-name">Enterprise</div>
+                <div class="pricing-price">$99<span>/month</span></div>
+                <ul class="pricing-features">
+                    <li>Unlimited bots</li>
+                    <li>Unlimited commands</li>
+                    <li>Real-time analytics</li>
+                    <li>AI & automation</li>
+                    <li>Dedicated support</li>
+                    <li>Custom integrations</li>
+                    <li>Team collaboration</li>
+                    <li>SLA guarantee</li>
+                </ul>
+                <a href="/register.html" class="btn btn-primary" style="width:100%;">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div style="text-align:center;margin-bottom:3rem;">
+            <div class="section-label" style="margin:0 auto 1rem;">❓ FAQ</div>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">What is TG BOT HUB? <span>+</span></div>
+            <div class="faq-answer">TG BOT HUB is a professional enterprise platform for managing Telegram bots. It allows you to add, configure, monitor, and scale multiple Telegram bots from a single dashboard without writing any code. Features include command management, analytics, AI integration, security, and more.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How do I add my Telegram bot? <span>+</span></div>
+            <div class="faq-answer">Simply get your bot token from @BotFather on Telegram, paste it into TG BOT HUB, and we'll handle the rest. Our system automatically verifies the token and connects to the Telegram API. You can then start configuring commands and features immediately.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Is my bot token secure? <span>+</span></div>
+            <div class="faq-answer">Absolutely. All bot tokens are encrypted at rest using AES-256 encryption. We use HTTPS for all API communications, JWT-based authentication, and never share your tokens with third parties. We also support 2FA and audit logging.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can I manage multiple bots? <span>+</span></div>
+            <div class="faq-answer">Yes! TG BOT HUB is designed for multi-bot management. You can add unlimited bots (depending on your plan), group them by category, monitor their status in real-time, and manage all their commands from one unified dashboard.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What kind of analytics do you provide? <span>+</span></div>
+            <div class="faq-answer">We provide comprehensive analytics including command usage statistics, user engagement metrics, growth trends, traffic analytics, real-time activity monitoring, and custom reports. All data is visualized with beautiful, interactive charts.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Do you support AI features? <span>+</span></div>
+            <div class="faq-answer">Yes! Our platform includes AI-powered features including AI chat commands, auto-reply, content generation, and moderation. You can integrate with GPT models to create intelligent, conversational bots.</div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="padding:6rem 2rem;text-align:center;">
+        <div style="max-width:600px;margin:0 auto;">
+            <h2 class="section-title" style="font-size:3rem;">Ready to Transform Your<br>Bot Management?</h2>
+            <p class="section-subtitle" style="margin:1rem auto 2rem;">Join thousands of developers and businesses using TG BOT HUB to manage their Telegram bots professionally.</p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+                <a href="/register.html" class="btn btn-primary btn-lg">🚀 Get Started Free</a>
+                <a href="/login.html" class="btn btn-ghost btn-lg">Sign In →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="landing-footer">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand">TG BOT HUB</div>
+                <p class="footer-desc">Enterprise-grade Telegram Bot Management Platform. Manage, monitor, and scale your Telegram bots professionally.</p>
+                <div style="display:flex;gap:1rem;margin-top:1rem;">
+                    <a href="#" style="color:var(--text-muted);font-size:1.2rem;">🐦</a>
+                    <a href="#" style="color:var(--text-muted);font-size:1.2rem;">💬</a>
+                    <a href="#" style="color:var(--text-muted);font-size:1.2rem;">📘</a>
+                    <a href="#" style="color:var(--text-muted);font-size:1.2rem;">🐙</a>
+                </div>
+            </div>
+            <div>
+                <div class="footer-title">Product</div>
+                <ul class="footer-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#">Marketplace</a></li>
+                    <li><a href="#">Plugins</a></li>
+                    <li><a href="#">API Documentation</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Company</div>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Support</div>
+                <ul class="footer-links">
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Status Page</a></li>
+                    <li><a href="#">Report Bug</a></li>
+                    <li><a href="#">Feature Request</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 TG BOT HUB. All rights reserved.</span>
+            <span>Made with ❤️ for the Telegram Community</span>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('open');
+                const span = item.querySelector('.faq-question span');
+                span.textContent = item.classList.contains('open') ? '−' : '+';
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.feature-card, .pricing-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
