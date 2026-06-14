@@ -3,8 +3,8 @@
 > **Enterprise-Grade Telegram Bot Management Platform**
 > Manage, monitor, and scale unlimited Telegram bots from a single professional dashboard.
 
-[![Status](https://img.shields.io/badge/status-production-green)](https://tgbothub.vercel.app)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/yourusername/tg-bot-hub)
+[![Status](https://img.shields.io/badge/status-production-green)](https://tg-bot-hub.vercel.app)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue)](https://github.com/rafetnoob731-coder/tg-bot-hub)
 [![License](https://img.shields.io/badge/license-MIT-purple)](LICENSE)
 
 ![TG BOT HUB Dashboard](https://via.placeholder.com/1200x600/6C5CE7/FFFFFF?text=TG+BOT+HUB+Dashboard)
@@ -127,7 +127,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/tg-bot-hub.git
+git clone https://github.com/rafetnoob731-coder/tg-bot-hub.git
 cd tg-bot-hub
 
 # Install dependencies
@@ -163,7 +163,7 @@ pip --version
 
 #### 2. Clone & Install
 ```bash
-git clone https://github.com/yourusername/tg-bot-hub.git
+git clone https://github.com/rafetnoob731-coder/tg-bot-hub.git
 cd tg-bot-hub
 pip install -r requirements.txt
 ```
@@ -557,7 +557,7 @@ MIT License — see [LICENSE](LICENSE) file for details.
 ## 🤝 Support
 
 - **Documentation**: [docs.tgbothub.com](https://docs.tgbothub.com)
-- **Issues**: [GitHub Issues](https://github.com/yourusername/tg-bot-hub/issues)
+- **Issues**: [GitHub Issues](https://github.com/rafetnoob731-coder/tg-bot-hub/issues)
 - **Community**: [Telegram Group](https://t.me/tgbothub)
 
 ---
