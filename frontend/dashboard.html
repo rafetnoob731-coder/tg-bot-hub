@@ -155,7 +155,7 @@
             <!-- Top Bar -->
             <header class="topbar">
                 <div class="topbar-left">
-                    <button class="mobile-menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">
+                    <button class="mobile-menu-toggle" onclick="toggleSidebar()">
                         ☰
                     </button>
                     <div>
@@ -198,10 +198,101 @@
         </main>
     </div>
 
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav hide-desktop" id="mobileBottomNav">
+        <div class="nav-row">
+            <a class="nav-item-mob active" data-page="overview" href="#">
+                <span class="nav-icon-mob">🏠</span>
+                <span class="nav-label-mob">Home</span>
+            </a>
+            <a class="nav-item-mob" data-page="bots" href="#">
+                <span class="nav-icon-mob">🤖</span>
+                <span class="nav-label-mob">Bots</span>
+            </a>
+            <a class="nav-item-mob" data-page="commands" href="#">
+                <span class="nav-icon-mob">⚡</span>
+                <span class="nav-label-mob">Commands</span>
+            </a>
+            <a class="nav-item-mob" data-page="analytics" href="#">
+                <span class="nav-icon-mob">📊</span>
+                <span class="nav-label-mob">Analytics</span>
+            </a>
+            <a class="nav-item-mob" data-page="profile" href="#">
+                <span class="nav-icon-mob">👤</span>
+                <span class="nav-label-mob">Profile</span>
+            </a>
+        </div>
+    </nav>
+
     <div class="toast-container"></div>
 
     <script src="/js/app.js"></script>
     <script src="/js/auth.js"></script>
     <script src="/js/dashboard.js"></script>
+    <script>
+        // Improved sidebar toggle with overlay
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const isOpen = sidebar.classList.toggle('open');
+            document.body.classList.toggle('sidebar-open', isOpen);
+        }
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            if (window.innerWidth <= 1024 && 
+                sidebar.classList.contains('open') &&
+                !sidebar.contains(e.target) &&
+                !toggle.contains(e.target)) {
+                sidebar.classList.remove('open');
+                document.body.classList.remove('sidebar-open');
+            }
+        });
+
+        // Sync bottom nav with sidebar nav
+        document.querySelectorAll('.mobile-bottom-nav .nav-item-mob').forEach(function(item) {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const page = this.dataset.page;
+                const sidebarItem = document.querySelector('.nav-item[data-page="' + page + '"]');
+                if (sidebarItem) {
+                    sidebarItem.click();
+                }
+            });
+        });
+
+        // Update bottom nav active state when page changes
+        document.addEventListener('DOMSubtreeModified', function() {
+            const activeSidebar = document.querySelector('.sidebar-nav .nav-item.active');
+            if (activeSidebar) {
+                const page = activeSidebar.dataset.page;
+                document.querySelectorAll('.mobile-bottom-nav .nav-item-mob').forEach(function(item) {
+                    item.classList.toggle('active', item.dataset.page === page);
+                });
+            }
+        });
+
+        // Handle resize: show/hide bottom nav
+        function handleResize() {
+            const bottomNav = document.getElementById('mobileBottomNav');
+            if (bottomNav) {
+                if (window.innerWidth <= 768) {
+                    bottomNav.style.display = 'block';
+                } else {
+                    bottomNav.style.display = 'none';
+                }
+            }
+        }
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        // Touch-friendly: increase tap targets on mobile
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.btn, .nav-item, .nav-item-mob, .topbar-btn').forEach(function(el) {
+                el.style.cursor = 'pointer';
+            });
+        }
+    </script>
 </body>
 </html>

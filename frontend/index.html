@@ -371,20 +371,49 @@
 
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 0.95rem;
             }
             .hero-stats {
                 flex-direction: column;
                 gap: 1.5rem;
+                padding: 1.5rem;
+            }
+            .hero-stat-value {
+                font-size: 1.6rem;
+            }
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
             }
             .features-grid, .pricing-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
             .pricing-card.featured {
                 transform: none;
             }
+            .pricing-card {
+                padding: 1.5rem 1rem;
+            }
+            .pricing-price {
+                font-size: 2.5rem;
+            }
+            .feature-card {
+                padding: 1.5rem;
+            }
+            .testimonial-card {
+                padding: 1.25rem;
+            }
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
             .footer-bottom {
                 flex-direction: column;
@@ -392,7 +421,94 @@
                 text-align: center;
             }
             .features-section, .pricing-section {
-                padding: 3rem 1rem;
+                padding: 2.5rem 0.75rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .faq-section {
+                padding: 2rem 0.75rem;
+            }
+            .faq-item {
+                padding: 1rem;
+            }
+            /* Nav on mobile */
+            nav {
+                padding: 0.5rem 0.75rem !important;
+            }
+            nav a {
+                font-size: 0.8rem !important;
+            }
+            nav .btn {
+                padding: 0.3rem 0.6rem !important;
+                font-size: 0.75rem !important;
+            }
+            .section-label {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.8rem;
+            }
+            .landing-hero {
+                min-height: 90vh;
+                padding: 1rem;
+            }
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.8rem;
+            }
+            .pricing-features li {
+                font-size: 0.8rem;
+            }
+            .testimonials-section {
+                padding: 2rem 0.75rem;
+            }
+            .testimonial-text {
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.6rem;
+            }
+            .hero-stat-value {
+                font-size: 1.3rem;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .feature-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1.4rem;
+            }
+            .feature-title {
+                font-size: 0.95rem;
+            }
+            .feature-desc {
+                font-size: 0.82rem;
+            }
+            .pricing-name {
+                font-size: 1.1rem;
+            }
+            .pricing-price {
+                font-size: 2rem;
+            }
+            nav .btn {
+                display: none;
+            }
+            nav a:not(.btn) {
+                font-size: 0.7rem !important;
+            }
+        }
+        
+        /* Touch improvements for all mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .btn, .nav-item, .faq-item, .feature-card, .pricing-card {
+                cursor: default;
+                -webkit-tap-highlight-color: rgba(108, 92, 231, 0.3);
+            }
+            .feature-card:hover, .pricing-card:hover {
+                transform: none;
             }
         }
 

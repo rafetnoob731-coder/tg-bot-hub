@@ -1007,6 +1007,7 @@ img {
 @media (max-width: 768px) {
     .hide-mobile { display: none !important; }
     .show-mobile { display: block !important; }
+    .hide-desktop { display: none !important; }
     .text-3xl { font-size: 1.8rem; }
     .text-2xl { font-size: 1.4rem; }
 }
