@@ -434,14 +434,13 @@
             }
             /* Nav on mobile */
             nav {
-                padding: 0.5rem 0.75rem !important;
+                padding: 0.6rem 0.75rem !important;
             }
-            nav a {
-                font-size: 0.8rem !important;
+            nav .nav-desktop-links {
+                display: none !important;
             }
-            nav .btn {
-                padding: 0.3rem 0.6rem !important;
-                font-size: 0.75rem !important;
+            nav .mobile-nav-toggle {
+                display: block !important;
             }
             .section-label {
                 font-size: 0.7rem;
@@ -493,11 +492,8 @@
             .pricing-price {
                 font-size: 2rem;
             }
-            nav .btn {
-                display: none;
-            }
-            nav a:not(.btn) {
-                font-size: 0.7rem !important;
+            nav .mobile-nav-toggle {
+                font-size: 1.3rem !important;
             }
         }
         
@@ -564,13 +560,22 @@
             <div style="width:36px;height:36px;background:var(--primary-gradient);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:white;font-weight:800;">T</div>
             <span style="font-weight:800;font-size:1.1rem;">TG BOT HUB</span>
         </div>
-        <div style="display:flex;gap:1rem;align-items:center;">
+        <div class="nav-desktop-links" style="display:flex;gap:1rem;align-items:center;">
             <a href="#features" style="color:var(--text-secondary);font-size:0.9rem;">Features</a>
             <a href="#pricing" style="color:var(--text-secondary);font-size:0.9rem;">Pricing</a>
             <a href="/login.html" class="btn btn-ghost btn-sm">Login</a>
             <a href="/register.html" class="btn btn-primary btn-sm">Get Started Free</a>
         </div>
+        <button class="mobile-nav-toggle" onclick="toggleMobileNav()" style="display:none;background:none;border:none;color:var(--text-primary);font-size:1.5rem;cursor:pointer;padding:4px;">☰</button>
     </nav>
+    <div class="mobile-nav-overlay" id="mobileNavOverlay" style="display:none;position:fixed;top:60px;left:0;right:0;bottom:0;background:var(--bg-card);z-index:99;border-top:1px solid var(--border-color);padding:1.5rem;">
+        <div style="display:flex;flex-direction:column;gap:0.8rem;">
+            <a href="#features" style="color:var(--text-secondary);font-size:1.1rem;padding:0.8rem;border-radius:var(--radius-md);background:var(--bg-tertiary);text-align:center;" onclick="closeMobileNav()">Features</a>
+            <a href="#pricing" style="color:var(--text-secondary);font-size:1.1rem;padding:0.8rem;border-radius:var(--radius-md);background:var(--bg-tertiary);text-align:center;" onclick="closeMobileNav()">Pricing</a>
+            <a href="/login.html" class="btn btn-ghost" style="justify-content:center;" onclick="closeMobileNav()">Login</a>
+            <a href="/register.html" class="btn btn-primary" style="justify-content:center;" onclick="closeMobileNav()">Get Started Free</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="landing-hero">
@@ -876,6 +881,24 @@
     </footer>
 
     <script>
+        // Mobile Nav Toggle
+        function toggleMobileNav() {
+            const overlay = document.getElementById('mobileNavOverlay');
+            const isOpen = overlay.style.display === 'block';
+            overlay.style.display = isOpen ? 'none' : 'block';
+            document.body.style.overflow = isOpen ? '' : 'hidden';
+        }
+        function closeMobileNav() {
+            document.getElementById('mobileNavOverlay').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        // Close mobile nav on resize back to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                closeMobileNav();
+            }
+        });
+        
         // FAQ Toggle
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {

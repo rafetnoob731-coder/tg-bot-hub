@@ -2086,10 +2086,64 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
 }
 
 // =============================================
+// MOBILE ENHANCEMENTS
+// =============================================
+
+// Re-render charts on resize/orientation change
+let resizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+        // Only re-render if on overview or analytics page
+        const page = Dashboard.currentPage;
+        if (page === 'overview') {
+            Dashboard.renderActivityChart();
+            Dashboard.renderBotsChart();
+        } else if (page === 'analytics') {
+            Dashboard.renderGrowthChart();
+            Dashboard.renderCommandUsageChart();
+        }
+        // Fix chart container heights on mobile
+        document.querySelectorAll('.chart-container').forEach(function(el) {
+            if (window.innerWidth <= 768) {
+                el.style.height = '200px';
+            } else {
+                el.style.height = '300px';
+            }
+        });
+    }, 300);
+});
+
+// Handle mobile viewport height (fix for mobile browser address bars)
+function setVH() {
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', vh + 'px');
+}
+setVH();
+window.addEventListener('resize', setVH);
+
+// Touch-friendly: prevent double-tap zoom on buttons
+if ('ontouchstart' in window) {
+    document.addEventListener('touchend', function(e) {
+        const target = e.target.closest('button, .btn, .nav-item, .nav-item-mob');
+        if (target) {
+            e.preventDefault();
+            target.click();
+        }
+    }, { passive: false });
+}
+
+// =============================================
 // INITIALIZE DASHBOARD
 // =============================================
 document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname.includes('dashboard.html') || window.location.pathname.includes('admin.html')) {
         Dashboard.init();
+        // Fix initial chart heights for mobile
+        if (window.innerWidth <= 768) {
+            document.querySelectorAll('.chart-container').forEach(function(el) {
+                el.style.height = '200px';
+            });
+        }
     }
 });
